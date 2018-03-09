@@ -3,21 +3,26 @@
 
 <h2>Burgers to be devoured!</h2>
 
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
+  {{#each data}}
+    {{#unless this.devoured}}
+      <div>
+        {{this.id}}. {{this.burger_name}}
+        <form method="POST" actions="/burgers/update?_method=PUT">
+        <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+        <button type="submit" class="btn btn-default">Devoure!</button>
+      </form>
+      </div>
+      
     {{/unless}}
   {{/each}}
-</ul>
+
 
 <h2>Burgers that are devoured!</h2>
-
 <ul>
   {{!--hbsObject--}}
-  {{#each burgers}} hbsObject
+  {{#each burgers}}
     {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
+    {{this.burger_name}}
     {{/if}}
   {{/each}}
 </ul>
@@ -26,12 +31,12 @@
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">burger Name:</label>
+    <label for="ca">Burger Name:</label>
     <input type="text" id="ca" name="name">
   </div>
 
   <div class="form-group">
-    <label for="slee">devoured?</label><br>
+    <label for="sleep">Devoured?</label><br>
     <input type="radio" name="devoured" value="1" checked> devoured!<br>
     <input type="radio" name="devoured" value="0"> EAT
   </div>

@@ -1,10 +1,10 @@
-var connection = require("/connection.js");
+var connection = require("../config/connection.js");
 
 // Object for all our SQL statement functions.
 var orm = {
   
-  all: function(tableInput, cb) {
-    var queryString = "SELECT * FROM " + tableInput + ";";
+  all: function(table, cb) {
+    var queryString = "SELECT * FROM " + table + ";";
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -13,19 +13,12 @@ var orm = {
     });
   },
 
-  create: function(table, cols, vals, cb) {
-    var queryString = "INSERT INTO " + table;
-
-    queryString += " (";
-    queryString += cols.toString();
-    queryString += ") ";
-    queryString += "VALUES (";
-    queryString += printQuestionMarks(vals.length);
-    queryString += ") ";
+  create: function(table, val, cb) {
+    var queryString = "INSERT INTO " + table + ' (burger_name) VALUES ("' + val + '");';
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
@@ -34,14 +27,9 @@ var orm = {
     });
   },
 
-  // An example of objColVals would be {name: panther, sleepy: true}
-  update: function(table, objColVals, condition, cb) {
-    var queryString = "UPDATE " + table;
 
-    queryString += " SET ";
-    queryString += objToSql(objColVals);
-    queryString += " WHERE ";
-    queryString += condition;
+  update: function(table, condition, cb) {
+    var queryString = "UPDATE " + table + " SET devoured=true WHERE id=" + condition + ";";
 
     console.log(queryString);
     connection.query(queryString, function(err, result) {
@@ -55,5 +43,5 @@ var orm = {
   
 };
 
-
+// Export the orm object for the model (burger.js).
 module.exports = orm;
