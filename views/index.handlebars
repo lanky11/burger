@@ -1,5 +1,5 @@
 
-<h1>Burgers!</h1>
+<h1>Eat Da Burgers!</h1>
 
 <h2>Burgers to be devoured!</h2>
 
@@ -14,7 +14,8 @@
 <h2>Burgers that are devoured!</h2>
 
 <ul>
-  {{#each burgers}}
+  {{!--hbsObject--}}
+  {{#each burgers}} hbsObject
     {{#if devoured}}
       {{> burgers/burger-block devoured=false}}
     {{/if}}
