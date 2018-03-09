@@ -14,7 +14,7 @@ var orm = {
   },
 
   create: function(table, val, cb) {
-    var queryString = "INSERT INTO " + table + ' (burger_name) VALUES ("' + val + '");';
+    var queryString = "INSERT INTO " + table + " (burger_name) VALUES ('" + val + "');";
 
     console.log(queryString);
 
