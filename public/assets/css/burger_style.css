@@ -1,0 +1,18 @@
+body {
+  background-image: url("../../assets/images/burger-pic.jpg");
+  background-position: center;
+  background-size: 125%;
+}
+
+.main-title {
+  font-weight: bold;
+}
+
+.burger-box {
+  width:60%;
+	margin:auto;
+	background-color:white;
+	padding:30px;
+	border:1px solid darkgrey;
+	border-radius: 5px;
+}
